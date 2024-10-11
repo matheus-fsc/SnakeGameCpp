@@ -1,2 +1,21 @@
-﻿
-.vs
+# Visual Studio cache files
+.vscode/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build directories
+bin/
+obj/
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+
+# Other temporary files
+*.log
+*.tlog
+*.lastbuildstate
+*.ipch/
