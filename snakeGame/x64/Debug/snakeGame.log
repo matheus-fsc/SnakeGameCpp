@@ -1,0 +1,5 @@
+﻿  Logica.cpp
+C:\Users\Matheus Coelho\source\repos\snakeGame\snakeGame\Logica.cpp(14,15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+  snakeGame.cpp
+  Gerando Código...
+LINK : fatal error LNK1168: não foi possível abrir C:\Users\Matheus Coelho\source\repos\snakeGame\x64\Debug\snakeGame.exe para escrita
