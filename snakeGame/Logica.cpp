@@ -1,6 +1,6 @@
 #include "header.h"
 
-int* Game::pontuacoes = nullptr; // Definição da variável estática
+int* Game::pontuacoes = nullptr;
 
 Game::Game() {
     score = 0;
@@ -11,7 +11,7 @@ Game::Game() {
     std::cout << "Digite a altura do mapa: ";
     std::cin >> a;
 
-    srand(time(0)); // Inicializa o gerador de números aleatórios
+    srand(time(0));
 
     Map* mapa = new Map(l, a);
     mapa->draw();
@@ -51,12 +51,12 @@ Snake::Snake(Map& m) {
 void Snake::move() {
     lastDirection = direction;
 
-    // Armazena a posição anterior
+    // Armazena a posiÃ§Ã£o anterior
     int prevX = x;
     int prevY = y;
     int prev2X, prev2Y;
 
-    // Move a cabeça da cobra
+    // Move a cabeÃ§a da cobra
     switch (direction) {
     case 0: // Esquerda
         y--;
@@ -89,7 +89,7 @@ void Snake::collision() {
         y < 1 || y >= cobraOlhaoMapa->getAltura() - 1) {
         cobraOlhaoMapa->setGameStatus(true);
     }
-    // Verifica se a cobra colidiu com o próprio corpo
+    // Verifica se a cobra colidiu com o prÃ³prio corpo
     for (int i = 0; i < nTail; i++) {
         if (tailX[i] == x && tailY[i] == y) {
             std::cout << "Game Over!" << std::endl;
@@ -101,8 +101,8 @@ void Snake::collision() {
 void Snake::eat() {
     // Verifica se a cobra comeu a fruta
     if (cobraOlhaoMapa->getMap()[x][y] == 2) {
-        nTail++; // Aumenta o tamanho da cobra
-        cobraOlhaoMapa->generateFruit(); // Gera uma nova fruta
+        nTail++; 
+        cobraOlhaoMapa->generateFruit(); 
     }
 }
 
@@ -123,7 +123,7 @@ Map::Map(int& largura, int& altura) {
     clean();
     setMeio();
     initSnake();
-    generateFruit(); // Gera a fruta no início do jogo
+    generateFruit(); 
 }
 
 int** Map::getMap() {
@@ -139,45 +139,43 @@ void Map::logic() {
 void Map::initSnake() {
     cobra->setPosX(meio[0]);
     cobra->setPosY(meio[1]);
-    map[cobra->getPosX()][cobra->getPosY()] = 1; // Marca a posição da cabeça da cobra
+    map[cobra->getPosX()][cobra->getPosY()] = 1; 
 }
 
 void Map::clean() {
     for (int i = 0; i < largura; i++) {
         for (int j = 0; j < altura; j++) {
-            map[i][j] = 0; // Limpa o mapa 
+            map[i][j] = 0; 
         }
     }
 }
 
 void Map::draw() {
-    clean(); // Limpa o mapa antes de desenhar
-    map[cobra->getPosX()][cobra->getPosY()] = 1; // Marca a posição da cabeça da cobra
+    clean();
+    map[cobra->getPosX()][cobra->getPosY()] = 1; 
 
-    // Marca a posição do corpo da cobra
     for (int i = 0; i < cobra->getNTail(); i++) {
-        map[cobra->getTailX(i)][cobra->getTailY(i)] = 3; // 3 representa o corpo da cobra
+        map[cobra->getTailX(i)][cobra->getTailY(i)] = 3;
     }
 
-
-    map[fruitX][fruitY] = 2; // Marca a posição da fruta
+    map[fruitX][fruitY] = 2; 
 
     for (int i = 0; i < largura; i++) {
         for (int j = 0; j < altura; j++) {
             if (i == 0 || i == largura - 1 || j == 0 || j == altura - 1) {
-                std::cout << "#"; // Desenha as paredes
+                std::cout << "#"; 
             }
             else if (map[i][j] == 1) {
-                std::cout << "O"; // Desenha a cabeça da cobra
+                std::cout << "O"; 
             }
             else if (map[i][j] == 2) {
-                std::cout << "*"; // Desenha a fruta
+                std::cout << "*"; 
             }
             else if (map[i][j] == 3) {
-                std::cout << "o"; // Desenha o corpo da cobra
+                std::cout << "o"; 
             }
             else {
-                std::cout << " "; // Espaço vazio
+                std::cout << " "; 
             }
         }
         std::cout << std::endl;
@@ -210,10 +208,10 @@ void Map::setMeio() {
 
 void Map::generateFruit() {
     do {
-        fruitX = rand() % (largura - 2) + 1; // Gera posições aleatórias para a fruta
+        fruitX = rand() % (largura - 2) + 1; // Gera posiÃ§Ãµes aleatÃ³rias para a fruta
         fruitY = rand() % (altura - 2) + 1;
-    } while (map[fruitX][fruitY] != 0); // Garante que a fruta não apareça em cima da cobra
-    map[fruitX][fruitY] = 2; // Marca a posição da fruta
+    } while (map[fruitX][fruitY] != 0); // Garante que a fruta nÃ£o apareÃ§a em cima da cobra
+    map[fruitX][fruitY] = 2; // Marca a posiÃ§Ã£o da fruta
 }
 
 Map::~Map() {
